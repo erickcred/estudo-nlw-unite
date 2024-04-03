@@ -1,0 +1,36 @@
+20:50:35.802 [INF] Now listening on: https://localhost:7032 
+20:50:35.857 [INF] Now listening on: http://localhost:5173 
+20:50:35.915 [INF] Application started. Press Ctrl+C to shut down. 
+20:50:35.919 [INF] Hosting environment: Development 
+20:50:35.922 [INF] Content root path: E:\estudo-nlw-unite\PassIn.Api 
+20:50:36.718 [INF] Request starting HTTP/2 GET https://localhost:7032/swagger/index.html - null null 
+20:50:37.144 [INF] Request finished HTTP/2 GET https://localhost:7032/swagger/index.html - 200 null text/html;charset=utf-8 423.3331ms 
+20:50:37.177 [INF] Request starting HTTP/2 GET https://localhost:7032/_framework/aspnetcore-browser-refresh.js - null null 
+20:50:37.194 [INF] Request starting HTTP/2 GET https://localhost:7032/_vs/browserLink - null null 
+20:50:37.308 [INF] Request finished HTTP/2 GET https://localhost:7032/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 130.1723ms 
+20:50:37.362 [INF] Request finished HTTP/2 GET https://localhost:7032/_vs/browserLink - 200 null text/javascript; charset=UTF-8 168.618ms 
+20:50:37.432 [INF] Request starting HTTP/2 GET https://localhost:7032/swagger/v1/swagger.json - null null 
+20:50:37.602 [INF] Request finished HTTP/2 GET https://localhost:7032/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 170.0919ms 
+20:50:40.831 [INF] Request starting HTTP/2 POST https://localhost:7032/api/Events - application/json 71 
+20:50:40.845 [INF] Executing endpoint 'PassIn.Api.Controllers.EventsController.Register (PassIn.Api)' 
+20:50:40.883 [INF] Route matched with {action = "Register", controller = "Events"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register(PassIn.Communication.Requests.RequestEventJson) on controller PassIn.Api.Controllers.EventsController (PassIn.Api). 
+20:50:40.896 [INF] Executed action PassIn.Api.Controllers.EventsController.Register (PassIn.Api) in 4.138ms 
+20:50:40.9 [INF] Executed endpoint 'PassIn.Api.Controllers.EventsController.Register (PassIn.Api)' 
+20:50:40.906 [ERR] An unhandled exception has occurred while executing the request. 
+System.InvalidOperationException: Unable to resolve service for type 'PassIn.Application.UseCases.Events.Rgister.RegisterEventUseCase' while attempting to activate 'PassIn.Api.Controllers.EventsController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method3(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+20:50:40.942 [INF] Request finished HTTP/2 POST https://localhost:7032/api/Events - 500 null text/plain; charset=utf-8 110.9751ms 
