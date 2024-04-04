@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using PassIn.Application.UseCases.Events.Rgister;
+using PassIn.Infrastructure;
 using Serilog;
 using Serilog.Core;
 
@@ -8,6 +10,12 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<PassInContext>(options =>
+{
+  var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+  options.UseSqlServer(connectionString);
+});
 
 builder.Services.AddScoped<RegisterEventUseCase>();
 
