@@ -1,3 +1,4 @@
+using PassIn.Application.UseCases.Events.Rgister;
 using Serilog;
 using Serilog.Core;
 
@@ -7,6 +8,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<RegisterEventUseCase>();
 
 
 

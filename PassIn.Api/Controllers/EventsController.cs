@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PassIn.Application.UseCases.Events.Rgister;
 using PassIn.Communication.Requests;
-using System.Text.Json;
+using PassIn.Communication.Responses;
 
 namespace PassIn.Api.Controllers;
 
@@ -9,12 +10,12 @@ namespace PassIn.Api.Controllers;
 [ApiController]
 public class EventsController : ControllerBase
 {
-  private readonly ILogger _logger;
+  private readonly ILogger<EventsController> _logger;
   private readonly RegisterEventUseCase _registerEventUseCase;
 
   public EventsController(
     RegisterEventUseCase registerEventUseCase,
-    ILogger logger)
+    ILogger<EventsController> logger)
   {
     _registerEventUseCase = registerEventUseCase;
     _logger = logger;
@@ -31,11 +32,11 @@ public class EventsController : ControllerBase
       return Created();
     } catch (ArgumentException ex)
     {
-      _logger.LogError(JsonSerializer.Serialize(ex));
-      return BadRequest(ex.Message);
+      _logger.LogError(JsonConvert.SerializeObject(ex));
+      return BadRequest(new ResponseErrorJson(ex.Message));
     } catch (Exception ex)
     {
-      _logger.LogError(JsonSerializer.Serialize(ex));
+      _logger.LogError(JsonConvert.SerializeObject(ex));
       return null;
     }
   }

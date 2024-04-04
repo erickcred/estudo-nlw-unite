@@ -1,15 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
-using PassIn.Communication.Requests;
+﻿using PassIn.Communication.Requests;
 
 namespace PassIn.Application.UseCases.Events.Rgister;
 
 public class RegisterEventUseCase
 {
-  private readonly ILogger _logger;
 
-  public RegisterEventUseCase(ILogger logger)
+  public RegisterEventUseCase()
   {
-    _logger = logger;
   }
 
   public void Execute(RequestEventJson request)
