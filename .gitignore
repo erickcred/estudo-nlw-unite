@@ -484,3 +484,4 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+/PassIn.Api/AppLogs/log20240403.txt
