@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace PassIn.Communication.Responses;
+﻿namespace PassIn.Communication.Responses;
 
 public class ResponseEventJson
 {

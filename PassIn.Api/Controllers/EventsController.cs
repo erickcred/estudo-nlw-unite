@@ -34,12 +34,12 @@ public class EventsController : ControllerBase
       return Created(string.Empty, newEvent.Id);
     } catch (ArgumentException ex)
     {
-     // _logger.LogError(JsonConvert.SerializeObject(ex));
+      _logger.LogError(JsonConvert.SerializeObject(ex));
       return BadRequest(new ResponseErrorJson(ex.Message));
     } catch (Exception ex)
     {
-      //_logger.LogError(JsonConvert.SerializeObject(ex));
-      return StatusCode(StatusCodes.Status500InternalServerError, new ResponseErrorJson(ex.Message));
+      _logger.LogError(JsonConvert.SerializeObject(ex));
+      return StatusCode(StatusCodes.Status500InternalServerError, new ResponseErrorJson("Erro Deconhecido!"));
     }
   }
 }

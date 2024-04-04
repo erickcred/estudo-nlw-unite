@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PassIn.Communication.Requests;
-using PassIn.Communication.Responses;
 using PassIn.Domain.Entities;
 
 namespace PassIn.Infrastructure;
