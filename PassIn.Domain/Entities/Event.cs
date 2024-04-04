@@ -2,7 +2,6 @@
 
 namespace PassIn.Domain.Entities;
 
-[Table("Event")]
 public class Event
 {
   public int Id { get; set; }
