@@ -19,7 +19,7 @@ namespace PassIn.Api.StartDI
     public static void RegisterServices(this IServiceCollection services)
     {
       services.AddScoped<RegisterEventUseCase>();
-      services.AddScoped<GetEventUseCase>();
+      services.AddScoped<GetEventByIdUseCase>();
     }
   }
 }
