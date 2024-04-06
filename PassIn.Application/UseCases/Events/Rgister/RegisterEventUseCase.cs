@@ -16,7 +16,7 @@ public class RegisterEventUseCase
     _context = context;
   }
 
-  public ResponseEventJson Execute(RequestEventJson request)
+  public ResponseRegisterEventJson Execute(RequestEventJson request)
   {
     Validate(request);
 
@@ -35,8 +35,9 @@ public class RegisterEventUseCase
       throw new PassInException("O Detalhe é invalido!");
   }
 
-  private ResponseEventJson InsertEvent(RequestEventJson request)
+  private ResponseRegisterEventJson InsertEvent(RequestEventJson request)
   {
+    using var transaction = _context.Database.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
     try
     {
       var newEvent = new Event
@@ -49,15 +50,14 @@ public class RegisterEventUseCase
       _context.Events.Add(newEvent);
       _context.SaveChanges();
 
-      return new ResponseEventJson
-      {
-        Title = newEvent.Title,
-        Details = newEvent.Details,
-        MaximumAttendees = newEvent.MaximumAttendees
-      };
+      int id = newEvent.Id;
+
+      transaction.Commit();
+      return new ResponseRegisterEventJson { Id = id };
     }
     catch (Exception ex)
     {
+      transaction.Rollback();
       throw new Exception(ex.Message);
     }
 
