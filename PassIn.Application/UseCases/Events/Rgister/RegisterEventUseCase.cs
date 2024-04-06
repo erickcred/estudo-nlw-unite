@@ -26,13 +26,13 @@ public class RegisterEventUseCase
   private void Validate(RequestEventJson request)
   {
     if (request.MaximumAttendees < 1)
-      throw new PassInException("O número maximo de participantes é invalido!");
+      throw new ErrorValidationException("O número maximo de participantes é invalido!");
 
     if (string.IsNullOrWhiteSpace(request.Title))
-      throw new PassInException("O Título é invalido!");
+      throw new ErrorValidationException("O Título é invalido!");
 
     if (string.IsNullOrWhiteSpace(request.Details))
-      throw new PassInException("O Detalhe é invalido!");
+      throw new ErrorValidationException("O Detalhe é invalido!");
   }
 
   private ResponseRegisterEventJson InsertEvent(RequestEventJson request)
@@ -55,10 +55,10 @@ public class RegisterEventUseCase
       transaction.Commit();
       return new ResponseRegisterEventJson { Id = id };
     }
-    catch (Exception ex)
+    catch
     {
       transaction.Rollback();
-      throw new Exception(ex.Message);
+      throw;
     }
 
   }

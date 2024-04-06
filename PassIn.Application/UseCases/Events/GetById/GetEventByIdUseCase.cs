@@ -24,7 +24,7 @@ public class GetEventByIdUseCase
   {
     var dataBase = _context.Events.AsNoTracking().FirstOrDefault(e => e.Id == id);
     if (dataBase is null)
-      throw new PassInException("Não foi possível localizar esse evento!");
+      throw new NotFoundException($"Não foi possível localizar esse evento! id: {id}");
 
     var responseEvent = new ResponseEventJson
     {

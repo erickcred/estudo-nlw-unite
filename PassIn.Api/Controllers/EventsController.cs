@@ -3,7 +3,6 @@ using PassIn.Application.UseCases.Events.Get;
 using PassIn.Application.UseCases.Events.Rgister;
 using PassIn.Communication.Requests;
 using PassIn.Communication.Responses;
-using PassIn.Exceptions;
 
 namespace PassIn.Api.Controllers;
 
@@ -25,51 +24,31 @@ public class EventsController : ControllerBase
     _logger = logger;
   }
 
+  #region Register Event
   [HttpPost]
   [ProducesResponseType(typeof(ResponseRegisterEventJson), StatusCodes.Status201Created)]
   [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
   public IActionResult Register([FromBody] RequestEventJson request)
   {
-    try
-    {
-      var useCase = _registerEventUseCase;
-      var responseEvent = useCase.Execute(request);
+    var useCase = _registerEventUseCase;
+    var responseEvent = useCase.Execute(request);
     
-      return Created(string.Empty, responseEvent);
-    } 
-    catch (PassInException ex)
-    {
-      _logger.LogError(ex.ToString());
-      return BadRequest(new ResponseErrorJson(ex.Message));
-    } 
-    catch (Exception ex)
-    {
-      _logger.LogError(ex.ToString());
-      return StatusCode(StatusCodes.Status500InternalServerError, new ResponseErrorJson("Erro Deconhecido!"));
-    }
+    return Created(string.Empty, responseEvent);
   }
+  #endregion
 
+
+  #region Get Event
   [HttpGet]
   [Route("{id}")]
   [ProducesResponseType(typeof(ResponseEventJson), StatusCodes.Status200OK)]
   [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
   public IActionResult GetById([FromRoute] int id)
   {
-    try
-    {
-      var useCase = _getEvenByIdtsUseCase;
-      var response = useCase.Execute(id);
-      return Ok(response);
-    }
-    catch (PassInException ex)
-    {
-      _logger.LogError(ex.ToString());
-      return BadRequest(new ResponseErrorJson(ex.Message));
-    }
-    catch (Exception ex)
-    {
-      _logger.LogError(ex.ToString());
-      return StatusCode(StatusCodes.Status500InternalServerError, new ResponseErrorJson("Erro Deconhecido!"));
-    }
+    var useCase = _getEvenByIdtsUseCase;
+    var response = useCase.Execute(id);
+
+    return Ok(response);
   }
+  #endregion
 }

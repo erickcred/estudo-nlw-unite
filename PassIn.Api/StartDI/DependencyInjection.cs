@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PassIn.Api.Filters;
 using PassIn.Application.UseCases.Events.Get;
 using PassIn.Application.UseCases.Events.Rgister;
 using PassIn.Infrastructure;
@@ -20,6 +21,11 @@ namespace PassIn.Api.StartDI
     {
       services.AddScoped<RegisterEventUseCase>();
       services.AddScoped<GetEventByIdUseCase>();
+      
+      services.AddMvc(options =>
+      {
+        options.Filters.Add(typeof(ExceptionFilter));
+      });
     }
   }
 }
