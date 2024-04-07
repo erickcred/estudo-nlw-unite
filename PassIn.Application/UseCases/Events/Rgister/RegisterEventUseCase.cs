@@ -16,7 +16,7 @@ public class RegisterEventUseCase
     _context = context;
   }
 
-  public ResponseRegisterEventJson Execute(RequestEventJson request)
+  public ResponseRegisterJson Execute(RequestEventJson request)
   {
     Validate(request);
 
@@ -35,7 +35,7 @@ public class RegisterEventUseCase
       throw new ErrorValidationException("O Detalhe é invalido!");
   }
 
-  private ResponseRegisterEventJson InsertEvent(RequestEventJson request)
+  private ResponseRegisterJson InsertEvent(RequestEventJson request)
   {
     using var transaction = _context.Database.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
     try
@@ -53,7 +53,7 @@ public class RegisterEventUseCase
       int id = newEvent.Id;
 
       transaction.Commit();
-      return new ResponseRegisterEventJson { Id = id };
+      return new ResponseRegisterJson { Id = id };
     }
     catch
     {
